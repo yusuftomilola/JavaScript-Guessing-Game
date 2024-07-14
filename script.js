@@ -157,7 +157,7 @@ console.log(typeof toStringAges);
 // [12] join()
 console.log("-----JOIN()------");
 const loveYou = ["I", "Love", "You", "My", "Dear", "OloladeMi"];
-const joinedLove = loveYou.join(" ");
+const joinedLove = loveYou.join("..");
 console.log(joinedLove);
 console.log(typeof joinedLove);
 
@@ -198,3 +198,300 @@ const findIndexFakesAges = fakeAges.findIndex((age) =>
   age.toString().includes("2")
 );
 console.log(findIndexFakesAges);
+
+// [17] some()
+console.log("-----SOME()------");
+const watches = ["belgium", "plastic", "silver", "gold"];
+const someWatches = watches.some((watch, index, array) => watch.includes("z"));
+console.log(someWatches);
+
+// [18] every()
+console.log("-----EVERY()------");
+const everyWatches = watches.every((watch, index, array) => {
+  //   console.log(watch);
+  //   console.log(index);
+  //   console.log(array);
+  return watch.includes("l");
+});
+
+console.log(everyWatches);
+
+// [19] filter()
+console.log("-----FILTER()------");
+const filteredWatches = watches.filter(
+  (watch, index, array) => !watch.includes("e")
+);
+
+console.log(filteredWatches);
+
+// [20] reduce()
+console.log("-----REDUCE()------");
+const hundreds = [100, 200, 300, 400, 500, 600];
+const sumOfHundreds = hundreds.reduce((acc, val) => {
+  return acc * val;
+}, 1);
+console.log(sumOfHundreds);
+
+// [21] concat()
+console.log("-----CONCAT()------");
+const animals = ["dog", "cat", "frog", "cow"];
+const nmbrs = [23, 12, 54, 67, 32];
+const animalsAndNmbrs = animals.concat(
+  nmbrs,
+  hundreds,
+  [9, 8, 7],
+  [],
+  [8],
+  ["h"]
+);
+console.log(animalsAndNmbrs);
+
+// [22] fill()
+console.log("-----FILL()------");
+const filledAnimals = animals.fill("Sheep", 1, 2);
+console.log(filledAnimals);
+
+// [23] flat()
+console.log("-----FLAT()------");
+const threeDeeArray = ["mango", "banana", ["pig", "tiger", ["benz", "camry"]]];
+const flattedArray = threeDeeArray.flat(2);
+console.log(flattedArray);
+
+// [24] splice()
+console.log("-----SPLICE()------");
+const foodCombos = [
+  "eba & butter",
+  "indomie & spag",
+  "spag & beans",
+  "bread & egg",
+  "potato & egusi",
+  "rice & bread",
+];
+
+const deletedFoodCombos = foodCombos.splice(
+  0,
+  3,
+  "Replacement-1",
+  "Replacement-2",
+  "Replacement-3",
+  "Replacement-4",
+  "Replacement-5"
+);
+
+console.log("Remaining Foods: ", foodCombos);
+console.log("Deleted Foods: ", deletedFoodCombos);
+
+//EXAMPLES
+// [A] Iterating with Indices for Conditional Updates
+// When you need to update array elements conditionally based on their indices, entries can be very helpful.
+console.log("-----SPLICE() EXAMPLE 1------");
+
+// [25] entries()
+console.log("-----ENTRIES()------");
+const eachFoodComboEntries = foodCombos.entries();
+
+for (let food of eachFoodComboEntries) {
+  console.log(food);
+}
+
+//EXAMPLES
+// [A] Iterating with Indices for Conditional Updates
+// When you need to update array elements conditionally based on their indices, entries can be very helpful.
+console.log("-----ENTRIES() EXAMPLE 1------");
+
+let numbers2 = [10, 20, 30, 40, 50];
+
+const entriedNumbers = numbers2.entries();
+
+for (let [index, value] of entriedNumbers) {
+  if (index % 2 === 0) {
+    numbers2[index] = value * 2;
+  }
+}
+
+console.log(numbers2);
+
+// [B] Creating an Indexed List for Display
+// In UI applications, you might want to create a list where each item is prefixed with its index.
+console.log("-----ENTRIES() EXAMPLE 2------");
+
+let fruits2 = ["Apple", "Banana", "Cherry", "Date"];
+
+let indexedFruits = fruits2.map(([index, fruit]) => `${index + 1}. ${fruit}`);
+
+console.log(indexedFruits);
+
+// [26] sort()
+console.log("-----SORT()------");
+const myNumbersOne = [34, 56, 22, 67, 89, 130, 12];
+const myNumbersTwo = [34, 56, 22, 67, 89, 130, 12];
+
+const myMusiciansOne = ["davido", "seyi vibez", "balloranking", "spyro"];
+const myMusiciansTwo = ["davido", "seyi vibez", "balloranking", "spyro"];
+
+//ascending - numbers
+myNumbersOne.sort((a, b) => {
+  return a - b;
+});
+//descending - numbers
+myNumbersTwo.sort((a, b) => {
+  return b - a;
+});
+
+console.log(myNumbersOne);
+console.log(myNumbersTwo);
+
+//ascending - strings
+myMusiciansOne.sort((a, b) => {
+  return a.localeCompare(b);
+});
+
+//descending - strings
+myMusiciansTwo.sort((a, b) => {
+  return b.localeCompare(a);
+});
+
+console.log(myMusiciansOne);
+console.log(myMusiciansTwo);
+
+//EXAMPLES
+// [A] Sorting and Filtering Products by Price
+// Scenario: You have an array of products, and you want to filter out products that are out of stock and sort the remaining products by price.
+console.log("-----SORT() EXAMPLE 1------");
+const products = [
+  { name: "Laptop", price: 1000, inStock: true },
+  { name: "Phone", price: 500, inStock: false },
+  { name: "Tablet", price: 800, inStock: true },
+  { name: "Monitor", price: 300, inStock: true },
+];
+
+const availableProducts = products
+  .filter((product) => product.inStock !== false)
+  .sort((a, b) => {
+    return a.price - b.price;
+  });
+
+console.log(availableProducts);
+
+// [B] Sorting and Mapping Students by Grade
+// Scenario: You have an array of students with their grades, and you want to sort them by their grades and then create an array of strings that includes their names and grades.
+console.log("-----SORT() EXAMPLE 2------");
+
+const students = [
+  { name: "Alice", grade: 85 },
+  { name: "Bob", grade: 92 },
+  { name: "Charlie", grade: 88 },
+  { name: "David", grade: 75 },
+];
+
+const sortedStudents = students
+  .sort((a, b) => {
+    return a.grade - b.grade;
+  })
+  .map((student) => `${student.name}: ${student.grade}`);
+
+console.log(sortedStudents);
+
+// [C] Sorting and Reducing Sales Data by Month
+// Scenario: You have an array of sales data, and you want to sort the sales by month and then calculate the total sales.
+console.log("-----SORT() EXAMPLE 3------");
+
+const sales = [
+  { month: "January", amount: 1000 },
+  { month: "March", amount: 1500 },
+  { month: "February", amount: 1200 },
+];
+
+const monthsOrder = ["January", "February", "March"];
+
+const totalSales = sales.reduce((total, sale) => {
+  return total + sale.amount;
+}, 0);
+console.log(totalSales);
+
+// [D] Sorting and Finding the Highest Value Transaction
+// Scenario: You have an array of transactions, and you want to sort them by amount and find the highest value transaction.
+console.log("-----SORT() EXAMPLE 4------");
+
+const transactions = [
+  { id: 1, amount: 250 },
+  { id: 2, amount: 450 },
+  { id: 3, amount: 120 },
+  { id: 4, amount: 300 },
+];
+
+const sortedHighestTransaction = transactions
+  .sort((a, b) => {
+    return b.amount - a.amount;
+  })
+  .find((transaction) => transaction);
+
+console.log(sortedHighestTransaction);
+
+// [E] Sorting and Finding the Highest Value Transaction
+// Scenario: You have an array of transactions, and you want to sort them by amount and find the highest value transaction.
+console.log("-----SORT() EXAMPLE 5------");
+
+const events = [
+  { title: "Conference", date: "2023-06-15" },
+  { title: "Workshop", date: "2022-09-10" },
+  { title: "Meetup", date: "2023-01-20" },
+  { title: "Webinar", date: "2022-12-05" },
+];
+
+const sortedEvents = events.sort((a, b) => {
+  return new Date(a.date) - new Date(b.date);
+});
+
+const groupedEvents = sortedEvents.reduce((grouped, event) => {
+  const year = new Date(event.date).getFullYear();
+
+  if (!grouped[year]) {
+    grouped[year] = [];
+  }
+
+  grouped[year].push(event);
+
+  return grouped;
+}, {});
+
+console.log(groupedEvents);
+
+// [27] copyWithin()
+console.log("-----COPYWITHIN()------");
+const CTA = ["You", "Must", "Buy", "This", "Product", "Now", "Today!"];
+
+CTA.copyWithin(3, 5, 7);
+CTA.copyWithin();
+console.log(CTA);
+
+//EXAMPLES
+// [A] Rearranging Elements in a Game Board
+console.log("-----COPYWITHIN() EXAMPLE 1------");
+let board = [
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9, 10, 11, 12],
+  [13, 14, 15, 16],
+];
+
+let flattenedBoard = board.flat(1);
+flattenedBoard.copyWithin(12, 0, 4);
+console.log(flattenedBoard);
+
+board = [
+  flattenedBoard.slice(4, 8),
+  flattenedBoard.slice(8, 12),
+  flattenedBoard.slice(12, 16),
+];
+
+console.log(board);
+
+// [B] Shuffling Elements
+// Shuffling elements within a certain range of an array.
+console.log("-----COPYWITHIN() EXAMPLE 2------");
+
+let array2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+array2.copyWithin(0, 5);
+console.log(array2);
